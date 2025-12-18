@@ -1,0 +1,70 @@
+/* CyberShield Content Script Styles */
+
+.cybershield-tooltip {
+    position: absolute;
+    z-index: 999999;
+    min-width: 250px;
+    max-width: 350px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    overflow: hidden;
+    transition: opacity 0.2s;
+    pointer-events: none;
+}
+
+.cybershield-tooltip.hidden {
+    opacity: 0;
+    pointer-events: none;
+    display: none;
+}
+
+.cybershield-tooltip.loading {
+    opacity: 1;
+}
+
+.cybershield-tooltip.safe {
+    border: 2px solid #10b981;
+}
+
+.cybershield-tooltip.warning {
+    border: 2px solid #f59e0b;
+}
+
+.cybershield-tooltip.danger {
+    border: 2px solid #ef4444;
+}
+
+.tooltip-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    color: white;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.tooltip-icon {
+    font-size: 16px;
+}
+
+.tooltip-body {
+    padding: 12px;
+    background: white;
+}
+
+.tooltip-domain {
+    font-size: 13px;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 6px;
+    word-break: break-all;
+}
+
+.tooltip-threat {
+    font-size: 12px;
+    color: #64748b;
+    line-height: 1.4;
+}

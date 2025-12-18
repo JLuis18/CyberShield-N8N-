@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberShield - Dashboard de Seguridad Cibernética</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-background">
+        <canvas id="particlesCanvas"></canvas>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <svg class="logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 2L8 8V18C8 27 20 34 20 34C20 34 32 27 32 18V8L20 2Z" stroke="url(#logoGradient)" stroke-width="2" fill="url(#logoGradient)" fill-opacity="0.1"/>
+                    <path d="M20 12L15 15V20C15 23.5 20 26 20 26C20 26 25 23.5 25 20V15L20 12Z" fill="url(#logoGradient2)"/>
+                    <defs>
+                        <linearGradient id="logoGradient" x1="8" y1="2" x2="32" y2="34" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#00f0ff"/>
+                            <stop offset="1" stop-color="#0066ff"/>
+                        </linearGradient>
+                        <linearGradient id="logoGradient2" x1="15" y1="12" x2="25" y2="26" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#00f0ff"/>
+                            <stop offset="1" stop-color="#0066ff"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <span class="logo-text">CyberShield</span>
+            </div>
+
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active">
+                    <svg class="nav-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <rect x="3" y="3" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/>
+                        <rect x="11" y="3" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/>
+                        <rect x="3" y="11" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/>
+                        <rect x="11" y="11" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/>
+                    </svg>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <svg class="nav-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.5"/>
+                        <path d="M10 7V10L12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    <span>Escáner de Amenazas</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <svg class="nav-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M10 2L4 5V10C4 14.5 10 17.5 10 17.5C10 17.5 16 14.5 16 10V5L10 2Z" stroke="currentColor" stroke-width="1.5"/>
+                        <path d="M7 10L9 12L13 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Tu Nivel de Seguridad</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <svg class="nav-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.5"/>
+                        <path d="M10 6V10M10 14H10.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    <span>Configuración</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Welcome Section -->
+            <section class="welcome-card glass-panel">
+                <h1 class="welcome-title">¡Hola de nuevo! 👋</h1>
+                <p class="welcome-subtitle">Here's your daily security overview.</p>
+            </section>
+
+            <!-- Dashboard Grid -->
+            <div class="dashboard-grid">
+                <!-- Security Score Card -->
+                <div class="security-score-card glass-panel">
+                    <div class="score-circle">
+                        <svg class="score-ring" viewBox="0 0 200 200">
+                            <defs>
+                                <linearGradient id="greenGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#00ff88;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#00cc88;stop-opacity:1" />
+                                </linearGradient>
+                                <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#00f0ff;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#0066ff;stop-opacity:1" />
+                                </linearGradient>
+                                <linearGradient id="redGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#ff3366;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#ff0044;stop-opacity:1" />
+                                </linearGradient>
+                                <filter id="glow">
+                                    <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                                    <feMerge>
+                                        <feMergeNode in="coloredBlur"/>
+                                        <feMergeNode in="SourceGraphic"/>
+                                    </feMerge>
+                                </filter>
+                            </defs>
+                            <circle cx="100" cy="100" r="80" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="20"/>
+                            <circle cx="100" cy="100" r="80" fill="none" stroke="url(#greenGradient)" stroke-width="20" 
+                                    stroke-dasharray="251.2 251.2" stroke-dashoffset="75.36" 
+                                    transform="rotate(-90 100 100)" filter="url(#glow)" class="score-arc"/>
+                            <circle cx="100" cy="100" r="80" fill="none" stroke="url(#blueGradient)" stroke-width="20" 
+                                    stroke-dasharray="125.6 376.8" stroke-dashoffset="-175.76" 
+                                    transform="rotate(-90 100 100)" filter="url(#glow)" class="score-arc"/>
+                            <circle cx="100" cy="100" r="80" fill="none" stroke="url(#redGradient)" stroke-width="20" 
+                                    stroke-dasharray="62.8 439.2" stroke-dashoffset="-301.36" 
+                                    transform="rotate(-90 100 100)" filter="url(#glow)" class="score-arc"/>
+                        </svg>
+                        <div class="score-content">
+                            <div class="score-number">90</div>
+                            <div class="score-label">PUNTOS DE<br>SEGURIDAD</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Metrics Panel -->
+                <div class="metrics-panel">
+                    <div class="metric-card glass-panel">
+                        <div class="metric-icon-wrapper" style="background: linear-gradient(135deg, rgba(255, 51, 102, 0.2), rgba(255, 0, 68, 0.1));">
+                            <svg class="metric-icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 2L4 6V12C4 17 12 21 12 21C12 21 20 17 20 12V6L12 2Z" stroke="#ff3366" stroke-width="2" fill="none"/>
+                                <path d="M9 12L11 14L15 10" stroke="#ff3366" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="metric-info">
+                            <div class="metric-value">24</div>
+                            <div class="metric-label">amenazas bloqueadas</div>
+                        </div>
+                    </div>
+
+                    <div class="metric-card glass-panel">
+                        <div class="metric-icon-wrapper" style="background: linear-gradient(135deg, rgba(0, 240, 255, 0.2), rgba(0, 102, 255, 0.1));">
+                            <svg class="metric-icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <rect x="3" y="5" width="18" height="14" rx="2" stroke="#00f0ff" stroke-width="2" fill="none"/>
+                                <path d="M3 9L12 14L21 9" stroke="#00f0ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="metric-info">
+                            <div class="metric-value">158</div>
+                            <div class="metric-label">correos analizados</div>
+                        </div>
+                    </div>
+
+                    <div class="metric-card glass-panel">
+                        <div class="metric-icon-wrapper" style="background: linear-gradient(135deg, rgba(138, 43, 226, 0.2), rgba(75, 0, 130, 0.1));">
+                            <svg class="metric-icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <circle cx="12" cy="12" r="9" stroke="#a855f7" stroke-width="2" fill="none"/>
+                                <circle cx="12" cy="12" r="3" fill="#a855f7"/>
+                                <path d="M12 3V6M12 18V21M21 12H18M6 12H3" stroke="#a855f7" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <div class="metric-info">
+                            <div class="metric-value">138</div>
+                            <div class="metric-label">conexiones analizadas</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Trends Chart -->
+                <div class="trends-card glass-panel">
+                    <div class="trends-header">
+                        <h3 class="trends-title">Tendencias de Amenazas</h3>
+                        <div class="legend">
+                            <div class="legend-item">
+                                <span class="legend-dot" style="background: #00f0ff; box-shadow: 0 0 10px #00f0ff;"></span>
+                                <span class="legend-label">Total amenazas</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-dot" style="background: #ff3366; box-shadow: 0 0 10px #ff3366;"></span>
+                                <span class="legend-label">Amenazas críticas</span>
+                            </div>
+                        </div>
+                    </div>
+                    <canvas id="trendsChart"></canvas>
+                </div>
+
+                <!-- Action Cards -->
+                <div class="action-card glass-panel">
+                    <div class="action-icon">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                            <circle cx="16" cy="16" r="12" stroke="url(#blueGradient)" stroke-width="2"/>
+                            <path d="M16 10V16L20 18" stroke="url(#blueGradient)" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="action-content">
+                        <h4 class="action-title">Analizar Enlace</h4>
+                        <p class="action-description">Suspicious URL detected in incoming email. Possible phishing attempt.</p>
+                    </div>
+                    <button class="action-button">Ver</button>
+                </div>
+
+                <div class="action-card glass-panel">
+                    <div class="action-icon">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                            <rect x="8" y="6" width="16" height="20" rx="2" stroke="#a855f7" stroke-width="2"/>
+                            <path d="M12 12H20M12 16H20M12 20H16" stroke="#a855f7" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="action-content">
+                        <h4 class="action-title">Verificar Factura</h4>
+                        <p class="action-description">Invoice flagged with unusual file fingerprint. Review recommended.</p>
+                    </div>
+                    <button class="action-button">Ver</button>
+                </div>
+
+                <div class="action-card glass-panel">
+                    <div class="action-icon">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                            <path d="M10 8L16 4L22 8V16C22 20 16 23 16 23C16 23 10 20 10 16V8Z" stroke="#ff3366" stroke-width="2"/>
+                            <circle cx="16" cy="14" r="2" fill="#ff3366"/>
+                        </svg>
+                    </div>
+                    <div class="action-content">
+                        <h4 class="action-title">Analizar Factura</h4>
+                        <p class="action-description">Possible anomaly in financial document. Investigate details.</p>
+                    </div>
+                    <button class="action-button">Ver</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

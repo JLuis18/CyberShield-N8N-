@@ -1,0 +1,16 @@
+/* Add these utility classes for theme-aware text colors */
+.text-primary {
+    color: var(--text-primary);
+}
+
+.text-secondary {
+    color: var(--text-secondary);
+}
+
+.bg-panel {
+    background: var(--glass-bg);
+}
+
+.border-panel {
+    border-color: var(--glass-border);
+}

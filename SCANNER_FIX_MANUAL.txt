@@ -1,0 +1,104 @@
+// INSTRUCCIONES PARA CORREGIR app/scanner/page.tsx
+// Archivo: c:\Users\Lara\Documents\Cursos 2025-20\Custumer\Proyect\CyberShield\app\scanner\page.tsx
+
+// PROBLEMA: La verificación de límites ocurre ANTES de obtener el token
+// SOLUCIÓN: Mover la verificación de límites DESPUÉS de obtener el token y hacerla condicional
+
+// ==============================================================================
+// PASO 1: LÍNEAS 47-56 - ELIMINAR esta sección completa:
+// ==============================================================================
+/*
+ELIMINAR ESTO:
+        if (activeTab !== 'invoice' && activeTab !== 'network' && !scanInput.trim()) return
+
+        const scanType = activeTab === 'url' ? 'urlScans' : activeTab === 'email' ? 'emailScans' : activeTab === 'network' ? 'networkScans' : 'invoiceScans'
+        if (!canPerformScan(scanType)) {
+            setResult({
+                error: 'Has alcanzado el límite diario de escaneos. Actualiza tu plan para continuar.',
+                limitReached: true
+            })
+            return
+        }
+*/
+
+// ==============================================================================
+// PASO 2: LÍNEAS 47-99 - REEMPLAZAR por esta versión corregida:
+// ==============================================================================
+/*
+REEMPLAZAR CON ESTO:
+
+        if (activeTab !== 'invoice' && activeTab !== 'network' && !scanInput.trim()) return
+
+        setLoading(true)
+        setResult(null)
+
+        try {
+            const token = localStorage.getItem('token')
+            
+            // Only check scan limits if user is logged in
+            if (token) {
+                const scanType = activeTab === 'url' ? 'urlScans' : activeTab === 'email' ? 'emailScans' : activeTab === 'network' ? 'networkScans' : 'invoiceScans'
+                if (!canPerformScan(scanType)) {
+                    setLoading(false)
+                    setResult({
+                        error: 'Has alcanzado el límite diario de escaneos. Actualiza tu plan para continuar.',
+                        limitReached: true
+                    })
+                    return
+                }
+            }
+            
+            let endpoint = `/api/scanner/${activeTab}`
+            let body
+
+            if (activeTab === 'invoice' && selectedFile) {
+                body = JSON.stringify({
+                    input: selectedFile.name,
+                    fileType: selectedFile.type,
+                    fileSize: selectedFile.size
+                })
+            } else if (activeTab === 'network') {
+                body = JSON.stringify({
+                    ipAddress,
+                    port: parseInt(port),
+                    protocol
+                })
+            } else {
+                body = JSON.stringify({ input: scanInput })
+            }
+
+            const res = await fetch(endpoint, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    ...(token && { 'Authorization': `Bearer ${token}` }),
+                },
+                body: body,
+            })
+
+            const data = await res.json()
+            setResult(data)
+            
+            // Only increment usage if user is logged in
+            if (token) {
+                const scanType = activeTab === 'url' ? 'urlScans' : activeTab === 'email' ? 'emailScans' : activeTab === 'network' ? 'networkScans' : 'invoiceScans'
+                incrementUsage(scanType)
+            }
+        } catch (error) {
+            setResult({ error: 'Error al realizar el análisis' })
+        } finally {
+            setLoading(false)
+        }
+*/
+
+// ==============================================================================
+// CAMBIOS CLAVE:
+// ==============================================================================
+// 1. Movimos `setLoading`, `setResult` y `const token` ANTES del check de límites
+// 2. Envolvimos la verificación de canPerformScan en `if (token) { ... }`
+// 3. Cambiamos Authorization header para ser condicional: ...(token && { 'Authorization': `Bearer ${token}` })
+// 4. Envolvimos incrementUsage() en `if (token) { ... }`
+
+// RESULTADO:
+// - Usuarios anónimos: pueden escanear sin límites
+// - Usuarios autenticados: se aplican límites de plan y se guarda historial

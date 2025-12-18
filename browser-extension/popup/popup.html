@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberShield Protection</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">
+                <span class="shield-icon">🛡️</span>
+                <h1>CyberShield</h1>
+            </div>
+            <button id="settingsBtn" class="icon-btn" title="Configuración">⚙️</button>
+        </div>
+
+        <!-- Current Page Scan -->
+        <div id="currentScan" class="section">
+            <h2>Página Actual</h2>
+            <div id="scanResult" class="scan-card loading">
+                <div class="loader"></div>
+                <p>Analizando...</p>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="actions">
+            <button id="rescanBtn" class="btn btn-secondary">
+                <span>🔄</span> Reescanear
+            </button>
+            <button id="reportBtn" class="btn btn-secondary">
+                <span>🚩</span> Reportar
+            </button>
+        </div>
+
+        <!-- Scan History -->
+        <div id="history" class="section">
+            <div class="section-header">
+                <h2>Historial</h2>
+                <button id="clearHistoryBtn" class="text-btn">Limpiar</button>
+            </div>
+            <div id="historyList" class="history-list">
+                <!-- History items will be inserted here -->
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p class="stats" id="stats">0 sitios escaneados</p>
+            <a href="#" id="openDashboard" class="link">Abrir Dashboard →</a>
+        </div>
+    </div>
+
+    <script src="../lib/api.js"></script>
+    <script src="../lib/utils.js"></script>
+    <script src="popup.js"></script>
+</body>
+
+</html>
