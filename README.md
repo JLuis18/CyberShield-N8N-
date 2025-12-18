@@ -67,15 +67,6 @@ npm run dev
 http://localhost:3000
 ```
 
-## 🗄️ Estructura de la Base de Datos
-
-- **users** - Usuarios registrados
-- **threats** - Amenazas detectadas
-- **emails** - Correos analizados
-- **connections** - Conexiones monitoreadas
-- **securityHistory** - Historial de puntuación de seguridad
-- **userConfig** - Configuración de usuario
-
 ## 🎨 Diseño Visual
 
 - Tema oscuro con gradientes azul neón, cyan y púrpura
@@ -125,30 +116,6 @@ http://localhost:3000
 - `GET /api/config` - Obtener configuración
 - `PATCH /api/config` - Actualizar configuración
 
-## 🚨 Comandos Útiles
-
-```bash
-# Desarrollo
-npm run dev
-
-# Producción
-npm run build
-npm run start
-
-# Base de datos
-npx prisma studio          # Abrir Prisma Studio
-npx prisma migrate dev     # Crear migración
-npx prisma generate        # Generar cliente Prisma
-
-# Linting
-npm run lint
-```
-
-## 📝 Notas
-
-- La base de datos SQLite es ideal para desarrollo. Para producción, considera PostgreSQL o MySQL.
-- Cambia `JWT_SECRET` en `.env` antes de deployment.
-- Las funciones de análisis son simulaciones. Para producción, integra con servicios reales como VirusTotal, Google Safe Browsing, etc.
 
 ## 🎯 Próximos Pasos
 
